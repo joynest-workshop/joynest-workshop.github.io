@@ -237,6 +237,39 @@ h2{text-align:center;font-family:'Playfair Display',serif;font-weight:700;font-s
 .nudge.show{display:block;animation:qpop .45s}
 .pass .tix{text-align:right}
 
+.pays{display:grid;gap:10px}
+.pay{display:block;position:relative;cursor:pointer}
+.pay input{position:absolute;opacity:0;pointer-events:none}
+.pay .pc{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:18px;background:rgba(255,255,255,.88);border:2px solid #ffd3e6;
+  transition:all .3s cubic-bezier(.2,.8,.2,1.3)}
+.pay .pi{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:1.45rem;background:linear-gradient(135deg,#fff,#ffe0ee);box-shadow:inset 0 0 0 1.5px #ffd0e4;transition:transform .4s cubic-bezier(.2,.8,.2,1.6)}
+.pay:nth-child(2) .pi{background:linear-gradient(135deg,#fff,#e1f9ef);box-shadow:inset 0 0 0 1.5px #c3efdc}
+.pay .pt{flex:1;min-width:0}
+.pay .pt b{display:block;color:#4a1738;font-size:1rem}
+.pay .pt small{display:block;font-size:.8rem;opacity:.75;margin-top:1px}
+.pay .dot{flex:none;width:24px;height:24px;border-radius:50%;border:2px solid #f2a9c9;position:relative;transition:all .3s}
+.pay .dot::after{content:"";position:absolute;inset:4px;border-radius:50%;background:#d1236f;transform:scale(0);transition:transform .3s cubic-bezier(.2,.8,.2,1.6)}
+.pay input:checked+.pc{border-color:#d1236f;background:linear-gradient(160deg,#fff,#ffe9f3);box-shadow:0 0 0 4px rgba(209,35,111,.13),0 10px 20px -14px rgba(168,19,79,.7);transform:translateY(-1px)}
+.pay input:checked+.pc .pi{transform:scale(1.12) rotate(-8deg)}
+.pay input:checked+.pc .dot{border-color:#d1236f}
+.pay input:checked+.pc .dot::after{transform:scale(1)}
+.pay input:focus-visible+.pc{outline:3px solid rgba(209,35,111,.4);outline-offset:2px}
+.paybox{margin-top:16px;padding:16px 14px;border-radius:20px;text-align:left;background:linear-gradient(160deg,#fff,#fff0f7);border:2px solid #ffc2dd}
+.paybox.cash{background:linear-gradient(160deg,#fff,#effcf6);border-color:#bfeedd}
+.paybox .pb-h{font-weight:800;color:#4a1738;font-size:1.02rem;margin-bottom:6px}
+.paybox p{margin-top:6px;font-size:.9rem;line-height:1.45}
+.acct{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;padding:10px 12px;border-radius:14px;background:#fff;border:1.5px dashed #ff9cc8}
+.acct .jc{font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#d1236f}
+.acct b{display:block;color:#4a1738}
+.acct .num{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;letter-spacing:.04em;color:#a8134f}
+.copy{flex:none;padding:9px 14px;border-radius:999px;border:0;background:#d1236f;color:#fff;font-weight:800;font-size:.82rem;cursor:pointer}
+.copy:active{transform:scale(.95)}
+.wa{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;padding:14px;border-radius:999px;text-decoration:none;color:#fff;font-weight:800;
+  background:linear-gradient(135deg,#2bd06f,#16a34a);box-shadow:0 12px 22px -12px rgba(22,163,74,.8)}
+.wa:active{transform:scale(.97)}
+.wa svg{width:20px;height:20px}
+.held{font-size:.8rem!important;opacity:.75;text-align:center}
+
 .submit{width:100%;margin-top:8px}
 .submit[disabled]{opacity:.85;pointer-events:none}
 .submit .spin{display:none;width:20px;height:20px;border-radius:50%;border:3px solid rgba(255,255,255,.4);border-top-color:#fff;animation:spin .8s linear infinite}
@@ -259,10 +292,10 @@ footer{text-align:center;margin-top:34px;font-size:.84rem;opacity:.8}
 footer .sig{font-family:'Great Vibes',cursive;font-size:2rem;color:var(--magenta);opacity:1;display:block}
 
 /* ---------- thank you overlay ---------- */
-.ty{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:24px;visibility:hidden;opacity:0;transition:opacity .5s,visibility .5s;
+.ty{position:fixed;inset:0;z-index:50;display:flex;justify-content:center;align-items:flex-start;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:24px 18px calc(24px + var(--safe-b));visibility:hidden;opacity:0;transition:opacity .5s,visibility .5s;
   background:radial-gradient(circle at 50% 35%,rgba(255,240,248,.92),rgba(255,205,228,.94))}
 .ty.show{visibility:visible;opacity:1}
-.ty-card{width:100%;max-width:420px;padding:30px 22px 24px;text-align:center;transform:scale(.8) translateY(30px);transition:transform .7s cubic-bezier(.2,.9,.2,1.25)}
+.ty-card{margin:auto 0;width:100%;max-width:420px;padding:30px 22px 24px;text-align:center;transform:scale(.8) translateY(30px);transition:transform .7s cubic-bezier(.2,.9,.2,1.25)}
 .ty.show .ty-card{transform:none}
 .ty-heart{font-size:3.4rem;display:inline-block;animation:heart 1.3s ease-in-out infinite}
 @keyframes heart{0%,100%{transform:scale(1)}15%{transform:scale(1.2)}30%{transform:scale(1)}45%{transform:scale(1.14)}}
@@ -420,6 +453,14 @@ footer .sig{font-family:'Great Vibes',cursive;font-size:2rem;color:var(--magenta
           <div class="ln tot"><span>Total</span><b id="total">Rs. 0</b></div>
         </div>
       </div>
+      <div class="field" id="fPay">
+        <span class="lbl">How would you like to pay?</span>
+        <div class="pays" role="radiogroup" aria-label="Payment method">
+          <label class="pay"><input type="radio" name="pay" value="Online (JazzCash)"><span class="pc"><span class="pi">📲</span><span class="pt"><b>Pay online</b><small>JazzCash · confirms your seat right away</small></span><span class="dot"></span></span></label>
+          <label class="pay"><input type="radio" name="pay" value="At the workshop"><span class="pc"><span class="pi">💵</span><span class="pt"><b>Pay at the workshop</b><small>Cash at the Joy Nest counter</small></span><span class="dot"></span></span></label>
+        </div>
+        <div class="err">Choose how you'd like to pay 💕</div>
+      </div>
       <button type="submit" class="cta submit" id="submit"><span class="spin"></span><span class="lbl-t">Book My Seat 💖</span></button>
       <div class="form-err" id="formErr">Hmm, that didn't go through. Please check your internet and tap again.</div>
       <p class="fine">Your details are only shared with Joy Nest for this workshop.</p>
@@ -457,6 +498,7 @@ footer .sig{font-family:'Great Vibes',cursive;font-size:2rem;color:var(--magenta
       <div class="row"><span>Where</span><b>Dunkin', Tipu Sultan</b></div>
       <div class="code" id="tyCode"></div>
     </div>
+    <div id="tyPay"></div>
     <p class="note">Show this screen to the Joy Nest team 💕</p>
     <button class="again" id="again" type="button">Book another seat</button>
   </div>
@@ -472,7 +514,13 @@ const GFORM = {
   ticket: "entry.2098745111",
   code:   "entry.1258630725",
   qty:    "entry.2063832177",
-  price:  "entry.1901215782"
+  price:  "entry.1901215782",
+  pay:    "entry.1462362242"
+};
+const PAY = {
+  name:   "Maidah Ali",
+  number: "0318 8429372",   // shown to customers
+  wa:     "923188429372"    // WhatsApp, international format without + (e.g. 923001234567)
 };
 /* ======================================================================== */
 
@@ -552,6 +600,7 @@ function render(){
   $('#nudge').classList.toggle('show', p.qty % 2 === 1);
   const tb = $('#total'); tb.textContent = fmt(p.total); tb.classList.remove('pop'); void tb.offsetWidth; tb.classList.add('pop');
 }
+document.querySelectorAll('input[name=pay]').forEach(r => r.addEventListener('change', () => $('#fPay').classList.remove('bad')));
 document.querySelectorAll('.choice').forEach(ch => {
   const ty = ch.dataset.type;
   ch.querySelector('.pl').addEventListener('click', () => setQ(ty, (cart[ty]||0) + 1));
@@ -588,6 +637,7 @@ async function send(data){
   if (GFORM.code.startsWith('entry.')) body.append(GFORM.code, data.code);
   if (GFORM.qty.startsWith('entry.')) body.append(GFORM.qty, String(data.qty));
   if (GFORM.price.startsWith('entry.')) body.append(GFORM.price, data.price);
+  if (GFORM.pay.startsWith('entry.')) body.append(GFORM.pay, data.pay);
   const ctrl = new AbortController(); const to = setTimeout(()=>ctrl.abort(), 15000);
   try { await fetch(GFORM.action, {method:'POST', mode:'no-cors', body, signal:ctrl.signal}); }
   finally { clearTimeout(to); }
@@ -601,12 +651,14 @@ $('#form').addEventListener('submit', async e => {
   if (name.length < 2) { $('#fName').classList.add('bad'); ok = false; }
   if (!phoneOk(phone)) { $('#fPhone').classList.add('bad'); ok = false; }
   if (!p.qty) { $('#fTicket').classList.add('bad'); ok = false; }
+  const payEl = document.querySelector('input[name=pay]:checked');
+  if (!payEl) { $('#fPay').classList.add('bad'); ok = false; }
   if (!ok) { const f = document.querySelector('.field.bad'); f.scrollIntoView({behavior:'smooth',block:'center'}); return; }
 
   const btn = $('#submit'); btn.disabled = true; btn.classList.add('loading'); btn.querySelector('.lbl-t').textContent = 'Booking…';
   $('#formErr').style.display = 'none';
   const items = [...document.querySelectorAll('.choice')].filter(ch => cart[ch.dataset.type]).map(ch => `${cart[ch.dataset.type]} × ${ch.dataset.type}`);
-  const data = {name, phone, ticket: items.join(', '), qty: p.qty, price: fmt(p.total), items, code: makeCode()};
+  const data = {name, phone, ticket: items.join(', '), qty: p.qty, price: fmt(p.total), items, code: makeCode(), pay: payEl.value, total: p.total};
   try {
     await send(data);
     showThanks(data);
@@ -623,6 +675,28 @@ function showThanks(d){
   $('#tyTicket').innerHTML = d.items.map(s => s.replace('Glass Bottle','Glass Bottle 🍾').replace('Jewellery Box','Jewellery Box 💍')).join('<br>');
   $('#tyTotal').textContent = d.price;
   $('#tyCode').textContent = d.code;
+  const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  if (d.pay.startsWith('Online')) {
+    const msg = `Hi Joy Nest! 💖 I booked the Bedazzling Workshop.\nName: ${d.name}\nTicket code: ${d.code}\nTickets: ${d.ticket}\nAmount: ${d.price} (JazzCash)\nHere's my payment screenshot:`;
+    $('#tyPay').innerHTML = `<div class="paybox">
+      <div class="pb-h">📲 Complete your payment</div>
+      <p>Send <b>${d.price}</b> via JazzCash to:</p>
+      <div class="acct"><div><span class="jc">JazzCash</span><b>${esc(PAY.name)}</b><span class="num">${PAY.number}</span></div><button type="button" class="copy" id="copyNum">Copy</button></div>
+      <p>Write <b>${d.code}</b> in the payment note, then send us the screenshot 👇</p>
+      <a class="wa" href="https://wa.me/${PAY.wa}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.6 2.5 4 3.5 1.5.6 2.1.7 2.8.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>Send payment screenshot</a>
+      <p class="held">Your seat is held for you and confirmed once payment is received 💕</p>
+    </div>`;
+    $('#copyNum').addEventListener('click', async ev => {
+      const b = ev.currentTarget, num = PAY.number.replace(/\s/g,'');
+      try { await navigator.clipboard.writeText(num); } catch(_) {
+        const ta = document.createElement('textarea'); ta.value = num; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch(__){} ta.remove(); }
+      b.textContent = 'Copied ✓'; setTimeout(() => b.textContent = 'Copy', 1800);
+    });
+  } else {
+    $('#tyPay').innerHTML = `<div class="paybox cash"><div class="pb-h">💵 Pay at the workshop</div>
+      <p>Please pay <b>${d.price}</b> in cash at the Joy Nest counter when you arrive. Just show this screen and your ticket code.</p></div>`;
+  }
+  $('#ty').scrollTop = 0;
   $('#ty').classList.add('show');
   document.body.style.overflow = 'hidden';
   if (navigator.vibrate) try { navigator.vibrate([30,40,60]); } catch(_){}
